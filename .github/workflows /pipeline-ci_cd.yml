@@ -11,6 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: 'hola mundo'
+      run:|
+      echo: 'Hola Mundo'
     
-      - name: Clonacion de codigo
-        uses: actions/checkout@v4
+  #    - name: Clonacion de codigo
+   #     uses: actions/checkout@v4
+        
+    # - name: Setup Java JDK
+     #   uses: actions/setup-java@v4.2.1
+      #  with:
+       #   java-version: ''
+        #  distribution: 'temurin'
+      
+     # - name: Compilacion
+      #  run: |
+       #   mvn package
