@@ -142,4 +142,4 @@ jobs:
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: ${{ secrets.USUARIO_DOKER }}/microservicio-java-devops:latest
+        tags: ${{ secrets.USUARIO_DOKER }}/laboratorio_final:latest
