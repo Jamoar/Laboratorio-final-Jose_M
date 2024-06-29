@@ -1,16 +1,16 @@
-name: CI_CD
+#name: CI_CD
 
-on:
-  push:
-  workflow_dispatch:
+#on:
+ # push:
+  #workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: 'hola mundo'
-      run:|
-        echo: 'Hola Mundo'
+#jobs:
+ # build:
+  #  runs-on: ubuntu-latest
+   # steps:
+    #- name: 'hola mundo'
+     # run:|
+      #  echo: 'Hola Mundo'
     
   #    - name: Clonacion de codigo
    #     uses: actions/checkout@v4
