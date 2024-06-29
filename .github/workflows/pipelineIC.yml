@@ -47,4 +47,29 @@ jobs:
           fi
 
 
+          
+      - name: Instalar SonarCloud 
+        run: npm install sonar-scanner --save-dev
+  
+
+
+
+      - name: Analisis sonarCloud
+        run: |
+            npx sonar-scanner \
+             -Dsonar.projectKey=Laboratorio-final-Jose_M \
+             -Dsonar.organization=jamoar \
+             -Dsonar.sources=. \
+              -Dsonar.host.url=https://sonarcloud.io \
+              -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+              -Dsonar.branch.name=feature-lab-final-Jose_m
+
+              
+
+      - name: SonarQube Quality Gate Check
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+        with:
+          scanMetadataReportFile: './.scannerwork/report-task.txt'
  
