@@ -2,7 +2,7 @@ name: Workflow
 on:
   push:
     branches:
-      -feature-lab-final-Jose_m
+      - "feature-lab-final-Jose_m"
 
 jobs:
 
