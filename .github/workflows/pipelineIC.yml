@@ -156,12 +156,12 @@ jobs:
 
     - name: Build Docker
       run: |
-           docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB_API_KEY }} --tag josemorales20/laboratorio_final:latest .
+           docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB_API_KEY }} --tag josemorales20/lab_final:latest .
   
 
     - name: Push Docker
       run: |
-       docker push ${{ secrets.DOCKER_USER }}/laboratorio_final:latest
+       docker push ${{ secrets.DOCKER_USER }}/lab_final:latest
           
           
 #-----------------------Docker Scan------------------------------------
