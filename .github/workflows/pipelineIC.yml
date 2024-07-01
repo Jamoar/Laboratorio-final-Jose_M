@@ -230,9 +230,9 @@ jobs:
         allow_issue_writing: false   
 
     - name: Upload HTML Report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v2
       with:
         name: DAST-report
         path: DAST.html
-        
+
  
