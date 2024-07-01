@@ -233,6 +233,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: DAST-report
-        path: DAST.html
+        path: dependency-check-report.html
 
  
