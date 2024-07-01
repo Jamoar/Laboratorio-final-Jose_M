@@ -112,6 +112,12 @@ jobs:
       with:
         name: Depcheck report
         path: ${{github.workspace}}/reports
+
+    - name: Upload JAR
+      uses: actions/upload-artifact@master
+      with:
+        name: Jar
+        path: ${{github.workspace}}/build/libs/spring-laboratorio-final-Jose_m-2-6-0.jar        
         
 
 #-----------------------Docker Build Image------------------------------------
@@ -136,10 +142,10 @@ jobs:
 
 
         
-    - name: Build and push 
+    - name: Build Docker 
       uses: docker/build-push-action@v5
       with:
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: ${{ secrets.USUARIO_DOKER }}/laboratorio_final:latest
+        tags: ${{ secrets.USUARIO_DOKER }}/laboratorio_final:latest .
