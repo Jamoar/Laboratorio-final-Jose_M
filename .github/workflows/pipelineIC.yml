@@ -141,11 +141,14 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
 
-        
-    - name: Build Docker 
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        platforms: linux/amd64,linux/arm64
-        push: true
-        tags: ${{ secrets.USUARIO_DOKER }}/laboratorio_final:latest .
+    - name: Build Docker
+      run: |
+           docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB_API_KEY }} --tag ${{ secrets.USUARIO_DOKER }}/laboratorio_final:latest .
+  
+
+    - name: Push Docker
+      run: |
+       docker push ${{ secrets.USUARIO_DOKER }}/laboratorio_final:latest
+          
+          
+
