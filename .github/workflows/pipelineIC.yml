@@ -193,24 +193,36 @@ jobs:
           format: 'table'   
 
 
-#-----------------------Docker Scan------------------------------------
+#-----------------------Despliegue------------------------------------
   
-  DAST:
-    needs: DockerScan
+  Deploy:
+    needs: DockerBuild
     runs-on: self-hosted
     steps: 
 
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
 
 
     - name: Despliegue App
       run: |
-       docker run -p 8080:80  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/lab_final:latest
+        kubectl apply -f ./Kubernetes/deployment.yml
 
-    - name: Sleep
+#-----------------------DAST (OWASP)------------------------------------
+  DAST: 
+    needs: Deploy
+    runs-on: ubuntu-latest
+    steps:
+
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+
+    - name: Start Application
       run: |
-       sleep 3   
+        docker run -p 8080:80  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/lab_final:latest
+        sleep 3
 
     - name: OWASP ZAP Scan
       uses: zaproxy/action-baseline@v0.11.0
