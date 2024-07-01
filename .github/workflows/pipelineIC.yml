@@ -196,7 +196,7 @@ jobs:
 #-----------------------Despliegue------------------------------------
   
   Deploy:
-    needs: DockerBuild
+    needs: DockerScan
     runs-on: self-hosted
     steps: 
 
