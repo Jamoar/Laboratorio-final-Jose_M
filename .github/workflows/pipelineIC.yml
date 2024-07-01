@@ -135,11 +135,11 @@ jobs:
    #   with:
    #     node-version: '20'
         
-    - name: Install Yarn
-      run: npm install -g yarn
+   # - name: Install Yarn
+   #   run: npm install -g yarn
 
-    - name: Install dependencies
-      run: yarn install
+   # - name: Install dependencies
+   #   run: yarn install
 
 
     - name: Login Docker
