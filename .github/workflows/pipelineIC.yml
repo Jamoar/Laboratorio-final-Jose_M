@@ -171,8 +171,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - name: Checkout code
-      uses: actions/checkout@v2      
+   # - name: Checkout code
+   #   uses: actions/checkout@v2      
 
     - name: Login Docker
       uses: docker/login-action@v3.0.0
@@ -191,3 +191,18 @@ jobs:
       with:
           image-ref: ${{ secrets.DOCKER_USER }}/lab_final:latest
           format: 'table'   
+
+
+#-----------------------Docker Scan------------------------------------
+  
+  DAST:
+    needs: DockerScan
+    runs-on: self-hosted
+    steps: 
+    - name: Despliegue App
+      run: |
+       docker run -p 8085:8085  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/lab_final:latest
+
+    - name: Sleep
+      run: |
+       sleep 3   
