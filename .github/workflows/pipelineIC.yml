@@ -199,9 +199,14 @@ jobs:
     needs: DockerScan
     runs-on: self-hosted
     steps: 
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+
     - name: Despliegue App
       run: |
-       docker run -p 8085:8085  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/lab_final:latest
+       docker run -p 8080:80  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/lab_final:latest
 
     - name: Sleep
       run: |
