@@ -156,12 +156,12 @@ jobs:
 
     - name: Build Docker
       run: |
-           docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB_API_KEY }} --tag ${{ secrets.DOCKER_USER }}/lab_final:latest .
+           docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB_API_KEY }} --tag ${{ secrets.DOCKER_USER }}/netflix-app:latest .
   
 
     - name: Push Docker
       run: |
-       docker push ${{ secrets.DOCKER_USER }}/lab_final:latest
+       docker push ${{ secrets.DOCKER_USER }}/netflix-app:latest
           
           
 #-----------------------Docker Scan------------------------------------
@@ -183,13 +183,13 @@ jobs:
 
     - name: Pull de la imagen Docker
       run: |
-        docker pull ${{ secrets.DOCKER_USER }}/lab_final:latest  
+        docker pull ${{ secrets.DOCKER_USER }}/netflix-app:latest  
 
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-          image-ref: ${{ secrets.DOCKER_USER }}/lab_final:latest
+          image-ref: ${{ secrets.DOCKER_USER }}/netflix-app:latest
           format: 'table'   
 
 
@@ -221,7 +221,7 @@ jobs:
 
     - name: Start Application
       run: |
-        docker run -p 8080:80  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/lab_final:latest
+        docker run -p 8080:80  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/netflix-app:latest
         sleep 3
 
     - name: OWASP ZAP Scan
