@@ -191,6 +191,12 @@ jobs:
       with:
           image-ref: ${{ secrets.DOCKER_USER }}/netflix-app:latest
           format: 'table'   
+         
+         
+    - name: Push Docker
+      run: |
+        docker push ${{ secrets.DOCKER_USER }}/netflix-app:latest
+                     
 
 
 #-----------------------Despliegue------------------------------------
@@ -201,7 +207,7 @@ jobs:
     steps: 
 
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
 
     - name: Despliegue App
@@ -222,7 +228,7 @@ jobs:
     - name: Start Application
       run: |
         docker run -p 8080:80  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/netflix-app:latest
-        sleep 3
+        sleep 30
 
     - name: OWASP ZAP Scan
       uses: zaproxy/action-baseline@v0.11.0
