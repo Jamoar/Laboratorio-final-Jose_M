@@ -129,6 +129,7 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v2
+      
 
    # - name: Set up Node.js
    #   uses: actions/setup-node@v4
@@ -185,4 +186,4 @@ jobs:
   #    uses: aquasecurity/trivy-action@master
   #    with:
   #        image-ref: ${{ secrets.USUARIO_DOKER }}/laboratorio_final:latest
-  #        format: 'table'  
+  #        format: 'table'   
