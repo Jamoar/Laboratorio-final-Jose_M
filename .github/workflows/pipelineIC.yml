@@ -221,7 +221,7 @@ jobs:
     - name: Start Application
       run: |
         docker run -p 8080:80  --name laboratorio-final-jose_m -d ${{ secrets.DOCKER_USER }}/netflix-app:latest
-        sleep 30
+        sleep 20
 
     - name: OWASP ZAP Scan
       uses: zaproxy/action-baseline@v0.11.0
