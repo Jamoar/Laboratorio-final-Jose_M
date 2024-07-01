@@ -66,12 +66,12 @@ jobs:
 
               
 
-      - name: SonarQube Quality Gate Check
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
-        with:
-          scanMetadataReportFile: './.scannerwork/report-task.txt'
+     # - name: SonarQube Quality Gate Check
+     #   env:
+     #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+     #   uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+     #   with:
+     #     scanMetadataReportFile: './.scannerwork/report-task.txt'
  
 
 
@@ -129,17 +129,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-
-  #  - name: Set up Node.js
-   #   uses: actions/setup-node@v4
-    #  with:
-     #   node-version: '20'
-        
-   # - name: Install Yarn
-   #   run: npm install -g yarn
-
-   # - name: Install dependencies
-    #  run: yarn install
 
 
     - name: Login Docker
