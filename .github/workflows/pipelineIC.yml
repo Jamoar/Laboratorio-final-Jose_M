@@ -57,21 +57,21 @@ jobs:
       - name: Analisis sonarCloud
         run: |
             npx sonar-scanner \
-             -Dsonar.projectKey=Jamoar_Laboratorio-final-Jose_M \
-             -Dsonar.organization=jamoar \
-             -Dsonar.sources=. \
+              -Dsonar.projectKey=Jamoar_Laboratorio-final-Jose_M \
+              -Dsonar.organization=jamoar \
+              -Dsonar.sources=. \
               -Dsonar.host.url=https://sonarcloud.io \
               -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
               -Dsonar.branch.name=feature-lab-final-Jose_m
 
               
 
-     # - name: SonarQube Quality Gate Check
-     #   env:
-     #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-     #   uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
-     #   with:
-     #     scanMetadataReportFile: './.scannerwork/report-task.txt'
+      - name: SonarQube Quality Gate Check
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+        with:
+          scanMetadataReportFile: './.scannerwork/report-task.txt'
  
 
 
