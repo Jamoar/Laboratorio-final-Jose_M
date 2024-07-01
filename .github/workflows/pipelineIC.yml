@@ -213,6 +213,7 @@ jobs:
     - name: Despliegue App
       run: |
         kubectl apply -f ./Kubernetes/deployment.yml
+        
 
 #-----------------------DAST (OWASP)------------------------------------
   DAST: 
