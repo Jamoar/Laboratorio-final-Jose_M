@@ -177,17 +177,17 @@ jobs:
     - name: Login Docker
       uses: docker/login-action@v3.0.0
       with:
-        username: ${{ secrets.USUARIO_DOKER }}
+        username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
 
     - name: Pull de la imagen Docker
       run: |
-        docker pull ${{ secrets.USUARIO_DOKER }}/lab_final:latest  
+        docker pull ${{ secrets.DOCKER_USER }}/lab_final:latest  
 
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-          image-ref: ${{ secrets.USUARIO_DOKER }}/lab_final:latest
+          image-ref: ${{ secrets.DOCKER_USER }}/lab_final:latest
           format: 'table'   
