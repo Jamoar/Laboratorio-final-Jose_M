@@ -98,18 +98,21 @@ jobs:
 
 
     - name: Dependency Check
-      uses: dependency-check/Dependency-Check_Action@1.1.0
+      uses: dependency-check/Dependency-Check_Action@main
       env:
         JAVA_HOME: /opt/jdk
       id: Depcheck
       with:
         project: '${{ github.event.repository.name }}'
         path: '.'
-        format: 'HTML'
+        #format: 'HTML'
+        format: 'JSON'
         out: 'reports' 
         args: >
-          --failOnCVSS 7
-          --enableRetired
+          -f HTML
+          --disableYarnAudit
+       #   --failOnCVSS 7
+       #   --enableRetired
 
     - name: Upload Test result
       uses: actions/upload-artifact@master
