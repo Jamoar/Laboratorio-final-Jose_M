@@ -64,12 +64,16 @@ jobs:
 
               
 
-     # - name: SonarQube Quality Gate Check
-     #   env:
-     #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-     #   uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
-     #   with:
-     #     scanMetadataReportFile: './.scannerwork/report-task.txt'
+      - name: SonarQube Quality Gate Check
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+        with:
+          scanMetadataReportFile: './.scannerwork/report-task.txt'
+
+      - name: Exit if Quality Gate fails
+        if: steps.sonarqube-quality-gate-check.outputs.quality-gate-status != 'PASSED'
+        run: exit 1
  
 
 
