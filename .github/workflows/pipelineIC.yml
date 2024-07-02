@@ -55,7 +55,7 @@ jobs:
       - name: Analisis sonarCloud
         run: |
             npx sonar-scanner \
-             -Dsonar.projectKey=Jamoar_Laboratorio-final-Jose_M \
+             -Dsonar.projectKey=Laboratorio-final-Jose_M \
              -Dsonar.organization=jamoar \
               -Dsonar.sources=. \
               -Dsonar.host.url=https://sonarcloud.io \
@@ -71,7 +71,7 @@ jobs:
    #     with:
    #       scanMetadataReportFile: './.scannerwork/report-task.txt'
         run: |
-            SONAR_PROJECT_KEY=Jamoar_Laboratorio-final-Jose_M \
+            SONAR_PROJECT_KEY=Laboratorio-final-Jose_M \
             SONAR_HOST_URL=https://your-sonarqube-server.com \
             SONAR_API_URL="$SONAR_HOST_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY" \
             STATUS=$(echo "$qualitygate" | jq .projectStatus.status | jq -r '.projectStatus.status')
