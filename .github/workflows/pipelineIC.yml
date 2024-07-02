@@ -68,8 +68,20 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
-        with:
-          scanMetadataReportFile: './.scannerwork/report-task.txt'
+    #    with:
+    #      scanMetadataReportFile: './.scannerwork/report-task.txt'
+          run: |
+            SONAR_PROJECT_KEY=Jamoar_Laboratorio-final-Jose_M \
+            SONAR_HOST_URL=https://your-sonarqube-server.com \
+            SONAR_API_URL="$SONAR_HOST_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY" \
+            STATUS=$(curl -s -u $SONAR_TOKEN: $SONAR_API_URL | jq -r '.projectStatus.status')
+            if [ "$STATUS" != "OK" ]; then
+              echo "Quality Gate failed: $STATUS"
+              exit 1
+            else
+              echo "Quality Gate passed: $STATUS"
+            fi
+
  
 
 
