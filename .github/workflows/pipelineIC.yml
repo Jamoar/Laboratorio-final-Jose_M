@@ -86,12 +86,16 @@ jobs:
 
 
     - name: Checkout code
-      uses: Actions/checkout@v2
+      uses: Actions/checkout@v4
+      with:
+          fetch-depth: 0
 
     #- name: Build
     #  run: | 
     #    chmod 777 gradlew
     #    .gradlew build
+    - name: Install dependencies
+      run: npm install
 
     - name: Install dependencies
       run: yarn install
