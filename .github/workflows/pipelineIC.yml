@@ -65,23 +65,20 @@ jobs:
               
 
       - name: SonarQube Quality Gate Check
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-   #     uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
-   #     with:
-   #       scanMetadataReportFile: './.scannerwork/report-task.txt'
         run: |
-            SONAR_PROJECT_KEY=Jamoar_Laboratorio-final-Jose_M \
-            SONAR_HOST_URL=https://your-sonarqube-server.com \
-            SONAR_API_URL="$SONAR_HOST_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY&branch=feature-lab-final-Jose_m" \
-            STATUS=$(echo "$qualitygate" | jq .projectStatus.status | jq -r '.projectStatus.status')
-            if [ "$STATUS" != "OK" ]; then
-              echo "Proyecto tiene vulnerabilidades, no cumple con SonarQube Quality Gate Check: $STATUS"
+              qualitygate=$(curl -f -X POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/qualitygates/project_status?projectKey=/Jamoar/Laboratorio-final-Jose_M&branch=feature-lab-final-Jose_m')
+              qualitygateStatus=$(echo "$qualitygate" | jq .projectStatus.status | sed -e 's/^"//' -e 's/"$//')
+              if [ "$STATUS" != "OK" ]; then
+                echo "Proyecto no tiene vulnerabilidades Críticas, altas o medias, cumple con SonarQube Quality Gate Check: $STATUS"
               exit 1
-            else
-              echo "Proyecto no tiene vulnerabilidades, cumple con SonarQube Quality Gate Check: $STATUS"
-            fi
+              else if [ "$STATUS" != "ERROR" ]; then
+                echo "Proyecto NO cumple con SonarQube Quality Gate Check"
+                    exit 1
+              else
+                echo "Proyecto no tiene vulnerabilidades, no cumple con SonarQube Quality Gate Check: $STATUS"
 
+              fi
+    
 
 
 #------------------------------------------------SCA-----------------------------------------          
