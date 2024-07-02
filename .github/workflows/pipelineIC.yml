@@ -76,10 +76,10 @@ jobs:
             SONAR_API_URL="$SONAR_HOST_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY" \
             STATUS=$(echo "$qualitygate" | jq .projectStatus.status | jq -r '.projectStatus.status')
             if [ "$STATUS" != "OK" ]; then
-              echo "Proyecto tiene vulnerabilidades: $STATUS"
+              echo "Proyecto tiene vulnerabilidades, no cumple con SonarQube Quality Gate Check: $STATUS"
               exit 1
             else
-              echo "Proyecto no tiene vulnerabilidades: $STATUS"
+              echo "Proyecto no tiene vulnerabilidades, cumple con SonarQube Quality Gate Check: $STATUS"
             fi
 
 
