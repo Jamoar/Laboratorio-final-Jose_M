@@ -86,10 +86,10 @@ jobs:
       with:
           fetch-depth: 0
 
-    - name: Build
-      run: | 
-        chmod 777 gradlew
-        .gradlew build
+    #- name: Build
+    #  run: | 
+    #    chmod 777 gradlew
+    #    .gradlew build
 
 
     - name: Install dependencies
