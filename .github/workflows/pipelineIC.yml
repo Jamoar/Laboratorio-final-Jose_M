@@ -67,12 +67,15 @@ jobs:
       - name: SonarQube Quality Gate Check
         run: |
               qualitygate=$(curl -f -X POST -u '${{ secrets.SONAR_TOKEN }}:' \
-              'https://sonarcloud.io/api/qualitygates/project_status?projectKey=Jamoar_Laboratorio-final-Jose_M&branch=feature-lab-final-Jose_m')
-              qualitygateStatus=$(echo "$qualitygate" | jq .projectStatus.status | sed -e 's/^"//' -e 's/"$//')
-              if [ "$STATUS" != "OK" ]; then
+              'https://sonarcloud.io/api/qualitygates/project_status? \
+              projectKey=Jamoar_Laboratorio-final-Jose_M&branch=feature-lab-final-Jose_m')
+              qualitygateStatus=$(echo "$qualitygate" | \
+              jq .projectStatus.status | sed -e 's/^"//' -e 's/"$//')
+
+              if [ "$STATUS" = "OK" ]; then
                 echo "Proyecto no tiene vulnerabilidades Críticas, altas o medias, cumple con SonarQube Quality Gate Check: $STATUS"
               exit 1
-              else if [ "$STATUS" != "ERROR" ]; then
+              else if [ "$STATUS" = "ERROR" ]; then
                 echo "Proyecto NO cumple con SonarQube Quality Gate Check"
                     exit 1
               else
@@ -107,6 +110,13 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
+  #  - name: Scan vulnerabilities Snyk
+  #    id: snyk_scan 
+  #    uses: snyk/actions/node@master
+  #    env:
+  #    SNYK TOKEN:  ${{ secrets.SNYK_TOKEN }} 
+  #    with:
+  #    args: --all-projects --severity-threshold=medium --json > snyk-output.json
 
     - name: Dependency Check
       uses: dependency-check/Dependency-Check_Action@1.1.0
