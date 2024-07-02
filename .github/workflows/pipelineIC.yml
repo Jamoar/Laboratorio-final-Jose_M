@@ -86,7 +86,7 @@ jobs:
 
 
     - name: Checkout code
-      uses: Actions/checkout@v4
+      uses: Actions/checkout@v2
       with:
           fetch-depth: 0
 
@@ -94,6 +94,8 @@ jobs:
     #  run: | 
     #    chmod 777 gradlew
     #    .gradlew build
+
+
     - name: Install dependencies
       run: npm install
 
@@ -109,8 +111,8 @@ jobs:
       with:
         project: '${{ github.event.repository.name }}'
         path: '.'
-     #  format: 'HTML'
         format: 'JSON'
+    #   format: 'HTML'
     #   out: 'reports' 
         args: >
           -f HTML
