@@ -73,7 +73,7 @@ jobs:
         run: |
             SONAR_PROJECT_KEY=Jamoar_Laboratorio-final-Jose_M \
             SONAR_HOST_URL=https://your-sonarqube-server.com \
-            SONAR_API_URL="$SONAR_HOST_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY" \
+            SONAR_API_URL="$SONAR_HOST_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY&branch=feature-lab-final-Jose_m" \
             STATUS=$(echo "$qualitygate" | jq .projectStatus.status | jq -r '.projectStatus.status')
             if [ "$STATUS" != "OK" ]; then
               echo "Proyecto tiene vulnerabilidades, no cumple con SonarQube Quality Gate Check: $STATUS"
