@@ -67,8 +67,7 @@ jobs:
       - name: SonarQube Quality Gate Check
         run: |
               qualitygate=$(curl -f -X POST -u '${{ secrets.SONAR_TOKEN }}:' \
-              'https://sonarcloud.io/api/qualitygates/project_status? \
-              projectKey=Jamoar_Laboratorio-final-Jose_M&branch=feature-lab-final-Jose_m')
+              'https://sonarcloud.io/api/qualitygates/project_status?projectKey=Jamoar_Laboratorio-final-Jose_M&branch=feature-lab-final-Jose_m')
               qualitygateStatus=$(echo "$qualitygate" | \
               jq .projectStatus.status | sed -e 's/^"//' -e 's/"$//')
 
@@ -88,7 +87,7 @@ jobs:
 #------------------------------------------------SCA-----------------------------------------          
  
   SCA:
-  #  needs: SAST #Se comenta dependencia de SAST para agilizar el pipeline
+    needs: SAST #Se comenta dependencia de SAST para agilizar el pipeline
     runs-on: ubuntu-latest
     steps:
 
