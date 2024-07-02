@@ -97,8 +97,8 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Install dependencies
-      run: yarn install
+   # - name: Install dependencies
+   #   run: yarn install
 
 
     - name: Dependency Check
@@ -121,14 +121,15 @@ jobs:
     - name: Upload Test result
       uses: actions/upload-artifact@master
       with:
-        name: Depcheck report
+        name: Depcheck Report
         path: ${{github.workspace}}/reports
 
     - name: Evaluar Reporte Depcheck
       run: |
-        critical_vulnerabilities=$(jq '[ .dependencies[].vulnerabilities[]? | select(.severity?|ascii_upcase == "CRITICAL")] | length' ${{github.workspace}}/reports/Depcheck-report.json)
-        high_vulnerabilities=$(jq '[ .dependencies[].vulnerabilities[]? | select(.severity?|ascii_upcase == "HIGH")] | length' ${{github.workspace}}/reports/Depcheck-report.json)
-        medium_vulnerabilities=$(jq '[ .dependencies[].vulnerabilities[]? | select(.severity?|ascii_upcase == "MEDIUM")] | length' ${{github.workspace}}/reports/Depcheck-report.json)
+        critical_vulnerabilities=$(jq '[ .dependencies[].vulnerabilities[]? | select(.severity?|ascii_upcase == "CRITICAL")] | length' ${{github.workspace}}/reports/depcheck-report.json)
+        high_vulnerabilities=$(jq '[ .dependencies[].vulnerabilities[]? | select(.severity?|ascii_upcase == "HIGH")] | length' ${{github.workspace}}/reports/depcheck-report.json)
+        medium_vulnerabilities=$(jq '[ .dependencies[].vulnerabilities[]? | select(.severity?|ascii_upcase == "MEDIUM")] | length' ${{github.workspace}}/reports/depcheck-report.json)
+       
         if [ $critical_vulnerabilities -gt 0 ] || [ $high_vulnerabilities -gt 0 ] || [ $medium_vulnerabilities -gt 0 ]; then
           echo "::error title=SCA::Se han encontrado $critical_vulnerabilities vulnerabilidades Criticas, $high_vulnerabilities  Altas y $medium_vulnerabilities Medias."
           exit 1
