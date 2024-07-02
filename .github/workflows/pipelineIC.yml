@@ -66,7 +66,8 @@ jobs:
 
       - name: SonarQube Quality Gate Check
         run: |
-              qualitygate=$(curl -f -X POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/qualitygates/project_status?projectKey=Jamoar/Laboratorio-final-Jose_M&branch=feature-lab-final-Jose_m')
+              qualitygate=$(curl -f -X POST -u '${{ secrets.SONAR_TOKEN }}:'\
+              'https://sonarcloud.io/api/qualitygates/project_status?projectKey=Jamoar_Laboratorio-final-Jose_M&branch=feature-lab-final-Jose_m')
               qualitygateStatus=$(echo "$qualitygate" | jq .projectStatus.status | sed -e 's/^"//' -e 's/"$//')
               if [ "$STATUS" != "OK" ]; then
                 echo "Proyecto no tiene vulnerabilidades Críticas, altas o medias, cumple con SonarQube Quality Gate Check: $STATUS"
