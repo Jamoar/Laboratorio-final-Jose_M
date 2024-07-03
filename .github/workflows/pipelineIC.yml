@@ -82,7 +82,7 @@ jobs:
 #------------------------------------------------SCA-----------------------------------------          
  
   SCA:
-    needs: SAST #Se comenta dependencia de SAST para agilizar el pipeline
+  #  needs: SAST #Se comenta dependencia de SAST para agilizar el pipeline
     runs-on: ubuntu-latest
     steps:
 
@@ -164,7 +164,7 @@ jobs:
 
     - name: Build Docker
       run: |
-           docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB_API_KEY }} --tag ${{ secrets.DOCKER_USER }}/netflix-app:latest .
+           docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB_API_KEY }} --tag josemorales20/netflix-app:latest .
   
 
     - name: Push Docker
