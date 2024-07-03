@@ -74,11 +74,9 @@ jobs:
                 echo "Proyecto no tiene vulnerabilidades Críticas, altas o medias, cumple con SonarQube Quality Gate Check: $STATUS"
               exit 1
               else
-                echo "Proyecto no tiene vulnerabilidades, no cumple con SonarQube Quality Gate Check: $STATUS"
+                echo "Proyecto no tiene vulnerabilidades, cumple con SonarQube Quality Gate Check: $STATUS"
               fi
-      #        else if [ "$STATUS" = "ERROR" ]; then
-      #          echo "Proyecto NO cumple con SonarQube Quality Gate Check"
-      #              exit 1
+
 
 
 #------------------------------------------------SCA-----------------------------------------          
