@@ -79,6 +79,8 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     }
   }, []);
 
+  string password= ‘123’
+  
   return (
     <Box sx={{ position: "relative", zIndex: 1 }}>
       <Box
