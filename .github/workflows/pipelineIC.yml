@@ -132,11 +132,11 @@ jobs:
         name: Depcheck Report
         path: ${{github.workspace}}/reports
 
-  #  - name: Upload JAR
-  #    uses: actions/upload-artifact@master
-  #    with:
-  #      name: Jar
-  #      path: ${{github.workspace}}/build/libs/spring-laboratorio-final-Jose_m-2-6-0.jar        
+    - name: Upload JAR
+      uses: actions/upload-artifact@master
+      with:
+        name: Jar
+        path: ${{github.workspace}}/build/libs/spring-laboratorio-final-Jose_m-2-6-0.jar        
         
 
 #-----------------------Docker Build Image------------------------------------
