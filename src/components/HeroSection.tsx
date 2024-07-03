@@ -37,6 +37,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
   const playerRef = useRef<Player | null>(null);
   const isOffset = useOffSetTop(window.innerWidth * 0.5625);
   const { setDetailType } = useDetailModal();
+  const password: string = "1234"
   const maturityRate = useMemo(() => {
     return getRandomNumber(20);
   }, []);
@@ -221,7 +222,6 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     <PlayButton size="large" />
                     <MoreInfoButton
                       size="large"
-                      password= ‘123’
                       onClick={() => {
                         setDetailType({ mediaType, id: video.id });
                       }}
