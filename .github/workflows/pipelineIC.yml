@@ -70,7 +70,7 @@ jobs:
               'https://sonarcloud.io/api/qualitygates/project_status?projectKey=Jamoar_Laboratorio-final-Jose_M&branch=feature-lab-final-Jose_m')
               qualitygateStatus=$(echo "$qualitygate" | jq .projectStatus.status | sed -e 's/^"//' -e 's/"$//')
 
-              if [ $qualitygateStatus != "OK" ]; then
+              if [ $qualitygateStatus = "OK" ]; then
                 echo "Proyecto tiene vulnerabilidades Críticas, altas o medias, no cumple con SonarQube Quality Gate Check: $STATUS"
               exit 1
               else
@@ -104,39 +104,39 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
-  #  - name: Scan vulnerabilities Snyk
-  #    id: snyk_scan 
-  #    uses: snyk/actions/node@master
-  #    env:
-  #    SNYK TOKEN:  ${{ secrets.SNYK_TOKEN }} 
-  #    with:
-  #    args: --all-projects --severity-threshold=medium --json > snyk-output.json
-
-    - name: Dependency Check
-      uses: dependency-check/Dependency-Check_Action@1.1.0
+    - name: Scan dependencias con Snyk
+      id: snyk_scan 
+      uses: snyk/actions/node@master
       env:
-        JAVA_HOME: /opt/jdk
-      id: Depcheck
+        SNYK TOKEN:  ${{ secrets.SNYK_TOKEN }} 
       with:
-        project: '${{ github.event.repository.name }}'
-        path: '.'
-        format: 'HTML'
-        out: 'reports' 
-        args: >
-          --failOnCVSS 7
-          --enableRetired
+        args: --all-projects --severity-threshold=medium --json > snyk-output.json
 
-    - name: Upload Test result
-      uses: actions/upload-artifact@master
-      with:
-        name: Depcheck Report
-        path: ${{github.workspace}}/reports
+  #  - name: Dependency Check
+  #    uses: dependency-check/Dependency-Check_Action@1.1.0
+  #    env:
+  #      JAVA_HOME: /opt/jdk
+  #    id: Depcheck
+  #    with:
+  #      project: '${{ github.event.repository.name }}'
+  #      path: '.'
+  #      format: 'HTML'
+  #      out: 'reports' 
+  #      args: >
+  #        --failOnCVSS 7
+  #        --enableRetired
 
-    - name: Upload JAR
-      uses: actions/upload-artifact@master
-      with:
-        name: Jar
-        path: ${{github.workspace}}/build/libs/spring-laboratorio-final-Jose_m-2-6-0.jar        
+  #  - name: Upload Test result
+  #    uses: actions/upload-artifact@master
+  #    with:
+  #      name: Depcheck Report
+  #      path: ${{github.workspace}}/reports
+
+  #  - name: Upload JAR
+  #    uses: actions/upload-artifact@master
+  #    with:
+  #      name: Jar
+  #      path: ${{github.workspace}}/build/libs/spring-laboratorio-final-Jose_m-2-6-0.jar        
         
 
 #-----------------------Docker Build Image------------------------------------
