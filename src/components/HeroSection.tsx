@@ -30,6 +30,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     mediaType,
     apiString: "popular",
     page: 1,
+    password= ‘123’
   });
   const [getVideoDetail, { data: detail }] = useLazyGetAppendedVideosQuery();
   const [video, setVideo] = useState<Movie | null>(null);
@@ -79,8 +80,6 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     }
   }, []);
 
-  string password= ‘123’
-  
   return (
     <Box sx={{ position: "relative", zIndex: 1 }}>
       <Box
