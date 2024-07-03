@@ -35,14 +35,13 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
   const [video, setVideo] = useState<Movie | null>(null);
   const [muted, setMuted] = useState(true);
   const playerRef = useRef<Player | null>(null);
-  const password: string = "1234";
   const isOffset = useOffSetTop(window.innerWidth * 0.5625);
   const { setDetailType } = useDetailModal();
   const maturityRate = useMemo(() => {
     return getRandomNumber(20);
   }, []);
 
-  const hand.leReady = useCallback((player: Player) => {
+  const handleReady = useCallback((player: Player) => {
     playerRef.current = player;
   }, []);
 
