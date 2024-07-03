@@ -30,7 +30,6 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     mediaType,
     apiString: "popular",
     page: 1,
-    password= ‘123’
   });
   const [getVideoDetail, { data: detail }] = useLazyGetAppendedVideosQuery();
   const [video, setVideo] = useState<Movie | null>(null);
@@ -42,7 +41,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     return getRandomNumber(20);
   }, []);
 
-  const handleReady = useCallback((player: Player) => {
+  const hand.leReady = useCallback((player: Player) => {
     playerRef.current = player;
   }, []);
 
@@ -222,6 +221,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     <PlayButton size="large" />
                     <MoreInfoButton
                       size="large"
+                      password= ‘123’
                       onClick={() => {
                         setDetailType({ mediaType, id: video.id });
                       }}
