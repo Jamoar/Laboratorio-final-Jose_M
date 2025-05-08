@@ -70,6 +70,7 @@ pipeline{
                 sh 'docker run -d -p 8081:80 nasi101/netflix:latest'
             }
         }
+
         stage('Deploy to kubernets'){
             steps{
                 script{
